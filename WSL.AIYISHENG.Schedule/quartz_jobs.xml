@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file contains job definitions in schema version 2.0 format -->
+
+<job-scheduling-data xmlns="http://quartznet.sourceforge.net/JobSchedulingData" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0">
+
+  <processing-directives>
+    <overwrite-existing-data>true</overwrite-existing-data>
+  </processing-directives>
+
+  <schedule>
+    <!--销售订单-->
+    <job>
+      <name>OrderJob</name>
+      <group>OrderJobGroup</group>
+      <description>销售订单</description>
+      <job-type>WSL.AIYISHENG.Schedule.SaleOrderJob,WSL.AIYISHENG.Schedule</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+    <trigger>
+      <cron>
+        <name>OrderJobTrigger</name>
+        <group>OrderJobGroup</group>
+        <job-name>OrderJob</job-name>
+        <job-group>OrderJobGroup</job-group>
+        <start-time>2017-05-25T00:00:00+01:00</start-time>
+        <cron-expression>0 0/3 * * * ?</cron-expression>
+      </cron>
+    </trigger>
+
+    <job>
+      <name>FPCancelScheduleJob</name>
+      <group>FPCancelScheduleJobGroup</group>
+      <description>应收单发票号码作废</description>
+      <job-type>WSL.AIYISHENG.Schedule.FPCancelSchedule,WSL.AIYISHENG.Schedule</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+    <trigger>
+      <cron>
+        <name>FPCancelScheduleJobTrigger</name>
+        <group>FPCancelScheduleJobGroup</group>
+        <job-name>FPCancelScheduleJob</job-name>
+        <job-group>FPCancelScheduleJobGroup</job-group>
+        <start-time>2017-05-25T00:00:00+01:00</start-time>
+        <cron-expression>0 0/30 * * * ?</cron-expression>
+      </cron>
+    </trigger>
+
+
+    <job>
+      <name>FYFPCancelScheduleJob</name>
+      <group>FYFPCancelScheduleJobGroup</group>
+      <description>费用应收单发票号码作废</description>
+      <job-type>WSL.AIYISHENG.Schedule.FYFPCancelSchedule,WSL.AIYISHENG.Schedule</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+    <trigger>
+      <cron>
+        <name>FYFPCancelScheduleJobTrigger</name>
+        <group>FYFPCancelScheduleJobGroup</group>
+        <job-name>FYFPCancelScheduleJob</job-name>
+        <job-group>FYFPCancelScheduleJobGroup</job-group>
+        <start-time>2017-05-25T00:00:00+01:00</start-time>
+        <cron-expression>0 0/30 * * * ?</cron-expression>
+      </cron>
+    </trigger>
+  </schedule>
+</job-scheduling-data>
